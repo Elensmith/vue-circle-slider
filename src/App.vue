@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app" id="app">
+    <CircleSlider />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CircleSlider from "@/components/CircleSlider";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CircleSlider,
   }
 }
 </script>
 
 <style>
-#app {
+body {
+  background-color: black;
+}
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 1200px;
 }
 </style>
