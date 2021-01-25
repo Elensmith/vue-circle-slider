@@ -3,6 +3,7 @@
     <h1 class="circle-slider__header">шесть факторов профессиональной защиты</h1>
       <div class="circle-slider__wrapper">
         <img src="@/assets/hexagon.svg" alt="" class="circle-slider__hexagon" />
+        <img src="@/assets/hand.svg" alt="" class="circle-slider__hand" />
         <ul class="circle-slider__lists">
           <li class="circle-slider__list circle-slider__list_one">ПОДХОДИТ ДЛЯ HI_TECH МАТЕРИАЛОВ_</li>
           <li class="circle-slider__list circle-slider__list_two">ЗАЩИТА БЕЛОГО ЦВЕТА / <br>ТЕХНОЛОГИЯ EXTRA WHITE_</li>
@@ -17,16 +18,15 @@
 </template>
 
 <style scoped>
-  /* .circle-slider {
-  } */
+  .circle-slider__hand {
+    display: none;
+  }
   .circle-slider__wrapper {
     overflow-y: hidden;
-    /* display: flex;  
-    align-content: center; */
-   position: relative;
-   margin: auto;
-   max-width: 1200px;
-   min-width: 1200px;
+    position: relative;
+    margin: auto;
+    max-width: 1200px;
+    min-width: 1200px;
   }
   .circle-slider__header {
     color: white;
@@ -61,8 +61,8 @@
   }
   .circle-slider__list_four {
     text-align: right;
-    top: 92%;
-    left: 5%;
+    top: 88%;
+    left: 7%;
   }
   .circle-slider__list_five {
     text-align: right;
@@ -92,6 +92,22 @@
   .circle-slider__hexagon {
     max-width: 300px;
     max-height: 300px;
+  }
+   .circle-slider__hand {
+    position: absolute;
+    left: 47%;
+    top: 46%;
+    display: inline-block;
+    animation: 2s linear 4 hand;
+  }
+
+  @keyframes hand {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
 }
 

@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:Elensmith/<USERNAME>.github.io.git main
 
 # если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:Elensmith/vue-circle-slider.git main:gh-pages
+git push -f git@github.com:Elensmith/vue-circle-slider.git master:gh-pages
 
 cd -
