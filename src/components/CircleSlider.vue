@@ -2,8 +2,10 @@
   <div class="circle-slider">
     <h1 class="circle-slider__header">шесть факторов профессиональной защиты</h1>
       <div class="circle-slider__wrapper">
-        <img src="@/assets/hexagon.svg" alt="" class="circle-slider__hexagon" />
-        <img src="@/assets/hand.svg" alt="" class="circle-slider__hand" />
+        <img 
+        v-touch:swipe.left="touchHandler"
+        src="@/assets/hexagon.svg" alt="" class="circle-slider__hexagon" />
+        <img src="@/assets/hand.svg" alt="" class="circle-slider__hand"/>
         <ul class="circle-slider__lists">
           <li class="circle-slider__list circle-slider__list_one">ПОДХОДИТ ДЛЯ HI_TECH МАТЕРИАЛОВ_</li>
           <li class="circle-slider__list circle-slider__list_two">ЗАЩИТА БЕЛОГО ЦВЕТА / <br>ТЕХНОЛОГИЯ EXTRA WHITE_</li>
@@ -17,7 +19,24 @@
   </div>
 </template>
 
+<script>
+  export default {
+    data() {
+      this.position = null;
+    },
+
+    methods: {
+      touchHandler(e) {
+        console.log(e)
+      }
+    }
+  }
+
+</script>
 <style scoped>
+  .circle-slider__hexagon {
+    animation: 2s  ease infinite move ;
+  }
   .circle-slider__hand {
     display: none;
   }
@@ -107,6 +126,15 @@
     }
     100% {
       transform: translateX(-100%);
+    }
+  }
+
+  @keyframes move {
+    0% {
+     transform: rotate(60deg)
+    }
+    100% {
+    transform: rotate(0deg) 
     }
   }
 }
