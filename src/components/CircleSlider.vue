@@ -17,8 +17,8 @@
 </template>
 
 <style scoped>
-  .circle-slider {
-  }
+  /* .circle-slider {
+  } */
   .circle-slider__wrapper {
     overflow-y: hidden;
     /* display: flex;  
