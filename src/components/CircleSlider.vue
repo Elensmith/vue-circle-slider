@@ -8,12 +8,12 @@
         src="@/assets/hexagon.svg" alt="" class="circle-slider__hexagon" />
         <img src="@/assets/hand.svg" alt="" class="circle-slider__hand" />
         <ul class="circle-slider__lists">
-          <li class="circle-slider__list circle-slider__list_one">ПОДХОДИТ ДЛЯ HI_TECH МАТЕРИАЛОВ_</li>
-          <li class="circle-slider__list circle-slider__list_two">ЗАЩИТА БЕЛОГО ЦВЕТА / <br>ТЕХНОЛОГИЯ EXTRA WHITE_</li>
-          <li class="circle-slider__list circle-slider__list_three">ЕВРОПЕЙСКИЕ ИННОВАЦИИ_</li>
-          <li class="circle-slider__list circle-slider__list_four">_СОЗДАН ДЛЯ РОССИИ / <br>РАЗРАБОТАН ДЛЯ ЭКСТРЕМАЛЬНЫХ УСЛОВИЙ</li>
-          <li class="circle-slider__list circle-slider__list_five">_ЭКСПЕРТИЗА / <br>СОБСТВЕННЫЕ <br>НАУЧНЫЕ РАЗРАБОТКИ</li>
-          <li class="circle-slider__list circle-slider__list_six">_УНИКАЛЬНОСТЬ / <br>ЗАПАТЕНТОВАННЫЕ ТЕХНОЛОГИИ</li>
+          <li class="circle-slider__list circle-slider__list_one circle-slider__list_on" id="1">ПОДХОДИТ ДЛЯ HI_TECH МАТЕРИАЛОВ_</li>
+          <li class="circle-slider__list circle-slider__list_two " id="2">ЗАЩИТА БЕЛОГО ЦВЕТА / <br>ТЕХНОЛОГИЯ EXTRA WHITE_</li>
+          <li class="circle-slider__list circle-slider__list_three" id="3">ЕВРОПЕЙСКИЕ ИННОВАЦИИ_</li>
+          <li class="circle-slider__list circle-slider__list_four" id="4">_СОЗДАН ДЛЯ РОССИИ / <br>РАЗРАБОТАН ДЛЯ ЭКСТРЕМАЛЬНЫХ УСЛОВИЙ</li>
+          <li class="circle-slider__list circle-slider__list_five" id="5">_ЭКСПЕРТИЗА / <br>СОБСТВЕННЫЕ <br>НАУЧНЫЕ РАЗРАБОТКИ</li>
+          <li class="circle-slider__list circle-slider__list_six" id="6">_УНИКАЛЬНОСТЬ / <br>ЗАПАТЕНТОВАННЫЕ ТЕХНОЛОГИИ</li>
         </ul>
       </div>
 
@@ -22,13 +22,13 @@
 
 <script>
   export default {
-  //   () {
-  // //  this.hexagon = document.querySelector('.circle-slider__hexagon');
-  //   },
+    created () {
+      this.position = 1;
+    },
 
     methods: {
       touchHandlerLeft(e) {
-        // console.log(this.hexagon)
+   
         let hexagon = document.querySelector('.circle-slider__hexagon');
         let animation = hexagon.animate([
           {transform: 'rotate(60deg)'},
@@ -37,8 +37,17 @@
         animation.addEventListener('finish', function() {
           hexagon.style.transform = 'rotate(0deg)';
         });
+        document.getElementById(this.position).classList.remove("circle-slider__list_on");
+        if (this.position >= 6){
+          console.log(this.position)
+          this.position = 1;
+        } else if (this.position < 6) {
+          this.position += 1;
+        }
+        document.getElementById(this.position).classList.add("circle-slider__list_on");
         console.log(e);
       },
+
       touchHandlerRight(e) {
         console.log(e);
         let hexagon = document.querySelector('.circle-slider__hexagon');
@@ -49,18 +58,21 @@
         animation.addEventListener('finish', function() {
           hexagon.style.transform = 'rotate(60deg)';
         });
+        document.getElementById(this.position).classList.remove("circle-slider__list_on");
+         if (this.position <= 1){
+          console.log(this.position)
+          this.position = 6;
+        } else if (this.position > 1) {
+          this.position -= 1;
+        }
+        document.getElementById(this.position).classList.add("circle-slider__list_on");
       }
     }
   }
 
 </script>
 <style scoped>
-  .circle-slider__hexagon_left-touch {
-    animation: 2s ease move-left;
-  }
-  .circle-slider__hexagon_right-touch {
-    animation: 2s ease move-right;
-  }
+
   .circle-slider__hand {
     display: none;
   }
@@ -124,17 +136,31 @@
     font-weight: bold;
     max-width: 312px;
   }
-  .circle-slider__lists{
-   display: none;
+
+  .circle-slider__list {
+    margin-left: auto;
+    margin-right: auto;
+    top: 120px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 18px;
+    display: none;
   }
+
+  .circle-slider__list_on {
+    display: inline-block;
+  }
+  
   .circle-slider__wrapper {
+    position: inherit;
     margin: 90px auto;
     max-width: 400px;
     min-width: 320px;
   }
   .circle-slider__hexagon {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 100%;
+    
   }
    .circle-slider__hand {
     position: absolute;
@@ -153,23 +179,6 @@
     }
   }
 
-  @keyframes move-left {
-    0% {
-     transform: rotate(60deg);
-    }
-    100% {
-      transform: rotate(0);
-    }
-  }
-
-  @keyframes move-right {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(60deg);
-    }
-  } 
 }
 
 </style>
