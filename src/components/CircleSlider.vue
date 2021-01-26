@@ -22,19 +22,33 @@
 
 <script>
   export default {
-   created () {
-    },
+  //   () {
+  // //  this.hexagon = document.querySelector('.circle-slider__hexagon');
+  //   },
 
     methods: {
       touchHandlerLeft(e) {
+        // console.log(this.hexagon)
+        let hexagon = document.querySelector('.circle-slider__hexagon');
+        let animation = hexagon.animate([
+          {transform: 'rotate(60deg)'},
+          {transform: 'rotate(0deg)'}
+        ], 500);
+        animation.addEventListener('finish', function() {
+          hexagon.style.transform = 'rotate(0deg)';
+        });
         console.log(e);
-         document.querySelector(".circle-slider__hexagon").classList.remove("circle-slider__hexagon_right-touch");
-        document.querySelector(".circle-slider__hexagon").classList.add("circle-slider__hexagon_left-touch");
       },
       touchHandlerRight(e) {
         console.log(e);
-        document.querySelector(".circle-slider__hexagon").classList.remove("circle-slider__hexagon_left-touch");
-        document.querySelector(".circle-slider__hexagon").classList.add("circle-slider__hexagon_right-touch");
+        let hexagon = document.querySelector('.circle-slider__hexagon');
+        let animation = hexagon.animate([
+          {transform: 'rotate(0deg)'},
+          {transform: 'rotate(60deg)'}
+        ], 500);
+        animation.addEventListener('finish', function() {
+          hexagon.style.transform = 'rotate(60deg)';
+        });
       }
     }
   }
