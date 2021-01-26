@@ -3,9 +3,10 @@
     <h1 class="circle-slider__header">шесть факторов профессиональной защиты</h1>
       <div class="circle-slider__wrapper">
         <img 
-        v-touch:swipe.left="touchHandler"
+        v-touch:swipe.left="touchHandlerLeft"
+        v-touch:swipe.right="touchHandlerRight"
         src="@/assets/hexagon.svg" alt="" class="circle-slider__hexagon" />
-        <img src="@/assets/hand.svg" alt="" class="circle-slider__hand"/>
+        <img src="@/assets/hand.svg" alt="" class="circle-slider__hand" />
         <ul class="circle-slider__lists">
           <li class="circle-slider__list circle-slider__list_one">ПОДХОДИТ ДЛЯ HI_TECH МАТЕРИАЛОВ_</li>
           <li class="circle-slider__list circle-slider__list_two">ЗАЩИТА БЕЛОГО ЦВЕТА / <br>ТЕХНОЛОГИЯ EXTRA WHITE_</li>
@@ -21,21 +22,30 @@
 
 <script>
   export default {
-    data() {
-      this.position = null;
+   created () {
     },
 
     methods: {
-      touchHandler(e) {
-        console.log(e)
+      touchHandlerLeft(e) {
+        console.log(e);
+         document.querySelector(".circle-slider__hexagon").classList.remove("circle-slider__hexagon_right-touch");
+        document.querySelector(".circle-slider__hexagon").classList.add("circle-slider__hexagon_left-touch");
+      },
+      touchHandlerRight(e) {
+        console.log(e);
+        document.querySelector(".circle-slider__hexagon").classList.remove("circle-slider__hexagon_left-touch");
+        document.querySelector(".circle-slider__hexagon").classList.add("circle-slider__hexagon_right-touch");
       }
     }
   }
 
 </script>
 <style scoped>
-  .circle-slider__hexagon {
-    animation: 2s  ease infinite move ;
+  .circle-slider__hexagon_left-touch {
+    animation: 2s ease move-left;
+  }
+  .circle-slider__hexagon_right-touch {
+    animation: 2s ease move-right;
   }
   .circle-slider__hand {
     display: none;
@@ -129,14 +139,23 @@
     }
   }
 
-  @keyframes move {
+  @keyframes move-left {
     0% {
-     transform: rotate(60deg)
+     transform: rotate(60deg);
     }
     100% {
-    transform: rotate(0deg) 
+      transform: rotate(0);
     }
   }
+
+  @keyframes move-right {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(60deg);
+    }
+  } 
 }
 
 </style>
